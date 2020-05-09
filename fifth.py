@@ -8,11 +8,16 @@ link2 = 'http://suninjuly.github.io/registration2.html'
 
 @pytest.fixture(scope="function")
 def browser():
-    print("\nstart browser for test..")
     browser = webdriver.Chrome()
     yield browser
-    print("\nquit browser..")
     browser.quit()
+
+
+@pytest.fixture(autouse=True)
+def auto():
+    print("\nstart test..")
+    yield
+    print("\nend test..")
 
 
 class TestLoginForm:
